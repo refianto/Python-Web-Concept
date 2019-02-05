@@ -1,4 +1,5 @@
 <?php
-	exec('control.py', $result);
-	print_r($result);
+	$a = 4;
+	$b = 2;
+	echo shell_exec("control.py $a $b")
 ?>
