@@ -1,9 +1,34 @@
-import sys
-a = sys.argv[1]
-b = sys.argv[2]
+from flask import *
+from model import sum
 
-from py1 import sum
-from py2 import min
+app = Flask(__name__)
 
-print('Sum = ',sum(int(a), int(b)))
-print('Min = ',min(int(a), int(b)))
+@app.route('/')
+def index():
+	return render_template('index.php')
+
+@app.route('/result', methods = ['GET','POST'])
+def result():
+	a = request.form['a']
+	b = request.form['b']
+	r = sum(int(a),int(b))
+	return render_template("index.php",result = str(r))
+
+# ==================== FOR GET
+
+# from flask import *
+# from model import sum
+# app = Flask(__name__)
+
+# @app.route('/')
+# def index():
+# 	return render_template('index.php')
+
+# @app.route('/result')
+# def result():
+# 	a = request.args.get('a')
+# 	b = request.args.get('b')
+# 	r = sum(int(a),int(b))
+# 	return render_template("index.php",result = str(r))
+
+
